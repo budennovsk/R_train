@@ -17,3 +17,5 @@ sum <- num1 + num2
 iris
 d <- 44
 f <- 55
+n <- d + f
+print(n)
