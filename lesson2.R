@@ -89,58 +89,87 @@
 library(catboost)
 library(ggplot2)
 
+
 set.seed(1)
 
 data <- data.frame(value = runif(100))
 
 
 first_value <- data$value[1]
-print(first_value)
+
 
 data_diff <- diff(data$value)
-print(tail(data_diff))
+
 
 lags <- 52
-steps <- 52
+steps <- 2
 
 X <- matrix(nrow = length(data_diff), ncol = lags)
 
-print(dim(X))
+
 
 for (i in 1:lags) {
   X[, i] <- data_diff[(i + 1):(length(data_diff) + i)]
 }
 colnames(X) <- paste0("lag_", 1:lags)
 
-X_clean <- X[complete.cases(X), ]
-print(dim(X_clean))
 
-# y <- data_diff[(lags + 1):length(data_diff)]
+X_clean <- X[complete.cases(X),1:51]
+X_clean_df <- data.frame(X_clean)
+column_names_X <- colnames(X_clean_df)
+y <- data_diff[(lags +1):length(data_diff)]
+y_df <- as.data.frame(y)
+print(column_names_X)
+
+pool <- catboost.load_pool(data = X_clean_df,label = y_df)
+
+
+fit_params <- list(
+  loss_function = 'RMSE',
+  iterations = 100,
+  depth = 6,
+  learning_rate = 0.1,
+  train_dir = 'train_dir'
+)
+
+model <- catboost.train(pool, params = fit_params)
+
+predictions <- numeric(steps)
+current_input <- tail(X_clean, 1)
+# print(current_input)
+current_input_df <- data.frame(current_input)
+pool_iter <- catboost.load_pool(data = current_input_df,NULL)
+# print(class(unname(current_input)[,-1]))
+# print(class(current_prediction))
+# nn <- c(unname(current_input)[,-1],c(2222222))
+# # print(nn)
 #
-# pool <- catboost.load_pool(data.frame(X, y))
-#
-# model <- catboost.train(pool)
-#
-# predictions <- numeric(steps)
-# current_input <- tail(X, 1)
-#
-# for (i in 1:steps) {
-#   current_prediction <- catboost.predict(model, current_input)
-#   predictions[i] <- current_prediction
-#
-#   current_input <- rbind(current_input[-1, ], current_prediction)
-# }
-#
-# pred_diff <- predictions
-#
-# pred_prob <- cumsum(pred_diff) + first_value
-#
-# pred_index <- seq(length(data$value) + 1, length(data$value) + steps)
-#
-# pred_series <- data.frame(index = pred_index, value = pred_prob)
-#
-# ggplot() +
-#   geom_line(data = data, aes(x = seq_along(value), y = value), color = "blue", linetype = "solid") +
-#   geom_line(data = pred_series, aes(x = index, y = value), color = "red", linetype = "dashed") +
-#   labs(x = "Time", y = "Value", title = "Actual values vs Predicted values") +
-#   theme_minimal()
+# tr <- t(data.frame(column_names_X,nn))
+# rownames(tr) <- NULL
+# print(tr)
+
+for (i in 1:steps) {
+  current_prediction <- catboost.predict(model, pool_iter)
+  predictions[i] <- current_prediction
+  print(predictions)
+
+
+  current_input_iter <- rbind(unname(current_input)[,-1], current_prediction)
+
+  pool_iter <- catboost.load_pool(data = current_input_iter,NULL)
+}
+
+print(predictions)
+pred_diff <- predictions
+
+pred_prob <- cumsum(pred_diff) + first_value
+
+pred_index <- seq(length(data$value) + 1, length(data$value) + steps)
+
+pred_series <- data.frame(index = pred_index, value = pred_prob)
+
+ggplot() +
+  geom_line(data = data, aes(x = seq_along(value), y = value), color = "blue", linetype = "solid") +
+  geom_line(data = pred_series, aes(x = index, y = value), color = "red", linetype = "dashed") +
+  labs(x = "Time", y = "Value", title = "Actual values vs Predicted values") +
+  theme_minimal()
