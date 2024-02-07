@@ -73,6 +73,7 @@ print(shift_level_max_result)
 # print(shift_level_index_result)
 print('-----------------')
 print(shift_var_max_result)
+print('-----------------')
 
 
 
