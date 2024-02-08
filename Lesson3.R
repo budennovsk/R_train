@@ -74,7 +74,7 @@ print(shift_level_max_result)
 print('-----------------')
 print(shift_var_max_result)
 print('-----------------')
-
+print('-----------------')
 
 
 
