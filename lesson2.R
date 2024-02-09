@@ -34,6 +34,7 @@
 # }
 # solution(c(1, 2, 3, 10, 5))
 # solution(NULL)
+# solution(NULL)
 
 # sum_digits <- function(number){
 #   sum_num <- 0
