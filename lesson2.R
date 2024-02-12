@@ -13,7 +13,7 @@
 # class(b)
 # vect_1 <- vector(mode = 'numeric', length = 10)
 # vect_2 <- c(1,3,5,7,9)
-# vect_2[3:4]
+# vect_2[3:49]
 #
 
 # sum_array <- function(a){
