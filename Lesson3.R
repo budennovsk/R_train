@@ -79,5 +79,31 @@ print('-----------------')
 
 
 
+# ”становка пакета fable (если еще не установлен)
+# install.packages("fable")
 
+# «агрузка пакета fable
+# install.packages("tidyr")
+library(fable)
+# install.packages("tidyverse")  # Uncomment this if the package is not installed
+
+# Your code continues here
+
+
+# —оздание примера данных в формате "тонких" таблиц
+data <- data.frame(
+  Year = c(2010, 2011, 2012),
+  Q1 = c(100, 150, 200),
+  Q2 = c(120, 160, 210),
+  Q3 = c(130, 170, 220),
+  Q4 = c(140, 180, 230)
+)
+
+# ѕреобразование данных в формат "широких" таблиц
+wide_data <- spread(data, key = Year, value = Q1:Q4)
+print(wide_data)
+
+# ѕреобразование данных обратно в формат "тонких" таблиц
+long_data <- gather(wide_data, key = "Year", value = "Value", -1)
+print(long_data)
 
