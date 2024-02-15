@@ -31,13 +31,13 @@ unitroot_ndiffs_result <- unitroot_ndiffs(time_series)
 unitroot_nsdiffs_result <- unitroot_nsdiffs(time_series)
 #__________________________
 
-var_tiled_mean_result <- var_tiled_mean(time_series)
-#_____________________________
-shift_level_max_result <- shift_level_max(time_series,.size=1)
-
-# shift_level_index_result <- shift_level_index(time_series)
-#___________________________
-shift_var_max_result <- shift_var_max(time_series)
+# var_tiled_mean_result <- var_tiled_mean(time_series)
+# #_____________________________
+# shift_level_max_result <- shift_level_max(time_series,.size=1)
+#
+# # shift_level_index_result <- shift_level_index(time_series)
+# #___________________________
+# shift_var_max_result <- shift_var_max(time_series)
 
 
 
