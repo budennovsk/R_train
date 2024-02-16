@@ -26,10 +26,10 @@ unitroot_kpss_result <- unitroot_kpss(time_series,lags = 'long')
 #___________________________
 unitroot_pp_result <- unitroot_pp(time_series)
 #__________________________
-unitroot_ndiffs_result <- unitroot_ndiffs(time_series)
-#__________________________
-unitroot_nsdiffs_result <- unitroot_nsdiffs(time_series)
-#__________________________
+# unitroot_ndiffs_result <- unitroot_ndiffs(time_series)
+# #__________________________
+# unitroot_nsdiffs_result <- unitroot_nsdiffs(time_series)
+# #__________________________
 
 # var_tiled_mean_result <- var_tiled_mean(time_series)
 # #_____________________________
