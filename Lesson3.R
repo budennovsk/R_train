@@ -19,7 +19,7 @@ feat_spectral_power <- feat_spectral(time_series)
 
 box_pierce_result <- box_pierce(time_series)
 
-ljung_box_result <- ljung_box(time_series)
+# ljung_box_result <- ljung_box(time_series)
 
 feat_pacf_result <- feat_pacf(time_series,.period = 3)
 unitroot_kpss_result <- unitroot_kpss(time_series,lags = 'long')
