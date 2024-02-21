@@ -24,7 +24,7 @@ box_pierce_result <- box_pierce(time_series)
 feat_pacf_result <- feat_pacf(time_series,.period = 3)
 unitroot_kpss_result <- unitroot_kpss(time_series,lags = 'long')
 #___________________________
-unitroot_pp_result <- unitroot_pp(time_series)
+# unitroot_pp_result <- unitroot_pp(time_series)
 #__________________________
 # unitroot_ndiffs_result <- unitroot_ndiffs(time_series)
 # #__________________________
