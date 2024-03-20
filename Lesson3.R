@@ -28,7 +28,7 @@ time_series <- c(0.29875031, 0.25506379, 0.75053665, 0.99802279, 0.53397792,
        0.58866215, 0.04551071, 0.1979828 , 0.40477363, 0.60127717,
        0.77193087, 0.41308613, 0.71005831, 0.7898695 , 0.3172602 ,
        0.97927024, 0.6496565 , 0.88099806, 0.55593769, 0.74160311)
-#
+
 # time_series <- c(100,102,105,103,104,100)
 # Create a one-dimensional time series in R
 # time_series <- ts(data = c(100, 102, 105, 103, 104,100), start = 1, end = 6, frequency = 1)
@@ -36,12 +36,17 @@ time_series <- c(0.29875031, 0.25506379, 0.75053665, 0.99802279, 0.53397792,
 # Applying mean to a time series in R
 
 # hurst_coefficient <- coef_hurst(time_series)
+
 #
 # feat_spectral_power <- feat_spectral(time_series)
+
+
+
 #
 # box_pierce_result <- box_pierce(time_series)
 
-# ljung_box_result <- ljung_box(time_series)
+
+# ljung_box_result <- ljung_box(time_series,lag = 10)
 
 # feat_pacf_result <- feat_pacf(time_series,.period = 3)
 # unitroot_kpss_result <- unitroot_kpss(time_series,lags = 'long')
@@ -53,8 +58,11 @@ time_series <- c(0.29875031, 0.25506379, 0.75053665, 0.99802279, 0.53397792,
 # unitroot_nsdiffs_result <- unitroot_nsdiffs(time_series)
 # #__________________________
 
-# var_tiled_mean_result <- var_tiled_mean(time_series,.size=6)
-# var_tiled_mean_result <- var_tiled_var(time_series,.size=6)
+var_tiled_mean_result <- var_tiled_mean(time_series,.size = 6)
+
+
+
+var_tiled_var_result <- var_tiled_var(time_series,.size=6)
 
 
 
@@ -62,16 +70,16 @@ time_series <- c(0.29875031, 0.25506379, 0.75053665, 0.99802279, 0.53397792,
 # #_____________________________
 shift_level_max_result <- shift_level_max(time_series,.size=6)
 #
-# # shift_level_index_result <- shift_level_index(time_series)
+# shift_level_index_result <- shift_level_index(time_series)
 # #___________________________
-# shift_var_max_result <- shift_var_max(time_series,.size=6)
+shift_var_max_result <- shift_var_max(time_series,.size=6)
 #--------------------
-# shift_kl_max_result <- shift_kl_max(time_series,.size=7)
+shift_kl_max_result <- shift_kl_max(time_series,.size=7)
 
-# n_crossing_points_result <- n_crossing_points(time_series)
-# longest_flat_spot_result <- longest_flat_spot(time_series)
-#  fd <- stat_arch_lm(time_series)
-# guerrero_c <- guerrero(time_series)
+n_crossing_points_result <- n_crossing_points(time_series)
+longest_flat_spot_result <- longest_flat_spot(time_series)
+ fd <- stat_arch_lm(time_series)
+guerrero_c <- guerrero(time_series)
 
 
 
@@ -97,19 +105,39 @@ shift_level_max_result <- shift_level_max(time_series,.size=6)
 # print('-----------------')
 # print(unitroot_nsdiffs_result)
 # print('-----------------')
-# print(var_tiled_mean_result)
+print(var_tiled_mean_result)
 # print('-----------------')
-# print(shift_level_max_result)
+print(var_tiled_var_result)
+# print('-----------------')
+print(shift_level_max_result)
 # # print('-----------------')
-# # print(shift_level_index_result)
+# print(shift_level_index_result)
 # print('-----------------')
-# print(shift_var_max_result)
+print(shift_var_max_result)
 # print('-----------------')
-# print(shift_kl_max_result)
+print(shift_kl_max_result)
 # print('-----------------')
-# print(n_crossing_points_result)
+print(n_crossing_points_result)
 # print('-----------------')
-# print(longest_flat_spot_result)
+print(longest_flat_spot_result)
 # print('-----------------')
-# print(fd)
+print(fd)
 print(guerrero_c)
+
+# Создание вектора чисел
+my_vector <- c(1, 2, 3, 4, 5)
+
+# Вычисление суммы
+result <- sum(my_vector)
+
+# Вывод результата и описания
+print(paste("Результат суммирования:", result))
+print(paste("Описание переменной result:", str(result)))
+# Создание вектора чисел
+my_vector <- c(1, 2, 3, 4, 5)
+
+# Вычисление суммы
+result <- sum(my_vector)
+
+# Вывод результата без [1]
+cat("Результат суммирования:", result)
